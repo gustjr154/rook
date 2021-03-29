@@ -1,20 +1,20 @@
-#################################################################################################################
-# The deployment for the rook operator
-# Contains the common settings for most Kubernetes deployments.
-# For example, to create the rook-ceph cluster:
-#   kubectl create -f crds.yaml -f common.yaml -f operator.yaml
-#   kubectl create -f cluster.yaml
+################################################# ################################################ #############
+# 루크 운영자를위한 배포
+# 대부분의 Kubernetes 배포에 대한 공통 설정을 포함합니다.
+# 예를 들어, rook-ceph 클러스터를 생성하려면 :
+# kubectl create -f crds.yaml -f common.yaml -f operator.yaml
+# kubectl create -f cluster.yaml
 #
-# Also see other operator sample files for variations of operator.yaml:
-# - operator-openshift.yaml: Common settings for running in OpenShift
-###############################################################################################################
+# operator.yaml의 변형에 대해서는 다른 운영자 샘플 파일도 참조하십시오.
+#-operator-openshift.yaml : OpenShift에서 실행하기위한 공통 설정
+################################################# ################################################ ###########
 
-# Rook Ceph Operator Config ConfigMap
-# Use this ConfigMap to override Rook-Ceph Operator configurations.
-# NOTE! Precedence will be given to this config if the same Env Var config also exists in the
-#       Operator Deployment.
-# To move a configuration(s) from the Operator Deployment to this ConfigMap, add the config
-# here. It is recommended to then remove it from the Deployment to eliminate any future confusion.
+# Rook Ceph 운영자 구성 ConfigMap
+#이 ConfigMap을 사용하여 Rook-Ceph Operator 구성을 재정의합니다.
+# 노트! 동일한 Env Var 구성이 동일한 환경에있는 경우이 구성에 우선 순위가 부여됩니다.
+# 운영자 배포.
+# 운영자 배포에서이 ConfigMap으로 구성을 이동하려면 구성을 추가하십시오.
+# 여기. 그런 다음 향후 혼란을 없애기 위해 배포에서 제거하는 것이 좋습니다.
 kind: ConfigMap
 apiVersion: v1
 metadata:
