@@ -19,30 +19,30 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: rook-ceph-operator-config
-  # should be in the namespace of the operator
+  #은 연산자의 네임 스페이스에 있어야합니다.
   namespace: rook-ceph # namespace:operator
 data:
-  # Enable the CSI driver.
-  # To run the non-default version of the CSI driver, see the override-able image properties in operator.yaml
+  # CSI 드라이버를 활성화합니다.
+  # 기본이 아닌 버전의 CSI 드라이버를 실행하려면 operator.yaml에서 재정의 가능한 이미지 속성을 참조하세요.
   ROOK_CSI_ENABLE_CEPHFS: "true"
-  # Enable the default version of the CSI RBD driver. To start another version of the CSI driver, see image properties below.
+  # CSI RBD 드라이버의 기본 버전을 활성화합니다. 다른 버전의 CSI 드라이버를 시작하려면 아래 이미지 속성을 참조하십시오.
   ROOK_CSI_ENABLE_RBD: "true"
   ROOK_CSI_ENABLE_GRPC_METRICS: "false"
 
-  # Set logging level for csi containers.
-  # Supported values from 0 to 5. 0 for general useful logs, 5 for trace level verbosity.
+  # csi 컨테이너에 대한 로깅 수준을 설정합니다.
+  # 0에서 5까지 지원되는 값입니다. 일반적인 유용한 로그의 경우 0, 추적 수준의 자세한 정보는 5입니다.
   # CSI_LOG_LEVEL: "0"
 
-  # OMAP generator will generate the omap mapping between the PV name and the RBD image.
-  # CSI_ENABLE_OMAP_GENERATOR need to be enabled when we are using rbd mirroring feature.
-  # By default OMAP generator sidecar is deployed with CSI provisioner pod, to disable
-  # it set it to false.
+  # OMAP 생성기는 PV 이름과 RBD 이미지 사이에 omap 매핑을 생성합니다.
+  # RBD 미러링 기능을 사용할 때 CSI_ENABLE_OMAP_GENERATOR를 활성화해야합니다.
+  # 기본적으로 OMAP 생성기 사이드카는 CSI provisioner pod와 함께 배포되어
+  # false로 설정합니다.
   # CSI_ENABLE_OMAP_GENERATOR: "false"
 
-  # set to false to disable deployment of snapshotter container in CephFS provisioner pod.
+  # CephFS provisioner pod에서 snapshotter 컨테이너의 배포를 비활성화하려면 false로 설정합니다.
   CSI_ENABLE_CEPHFS_SNAPSHOTTER: "true"
 
-  # set to false to disable deployment of snapshotter container in RBD provisioner pod.
+  # RBD 프로비저너 포드에서 스냅샷터 컨테이너의 배포를 비활성화하려면 false로 설정합니다.
   CSI_ENABLE_RBD_SNAPSHOTTER: "true"
 
   # Enable cephfs kernel driver instead of ceph-fuse.
