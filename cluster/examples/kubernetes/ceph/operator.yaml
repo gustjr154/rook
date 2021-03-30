@@ -45,57 +45,57 @@ data:
   # RBD 프로비저너 포드에서 스냅샷터 컨테이너의 배포를 비활성화하려면 false로 설정합니다.
   CSI_ENABLE_RBD_SNAPSHOTTER: "true"
 
-  # Enable cephfs kernel driver instead of ceph-fuse.
-  # If you disable the kernel client, your application may be disrupted during upgrade.
-  # See the upgrade guide: https://rook.io/docs/rook/master/ceph-upgrade.html
-  # NOTE! cephfs quota is not supported in kernel version < 4.17
+  # ceph-fuse 대신 cephfs 커널 드라이버를 활성화합니다.
+  # 커널 클라이언트를 비활성화하면 업그레이드 중에 애플리케이션이 중단 될 수 있습니다.
+  # 업그레이드 가이드 참조 : https://rook.io/docs/rook/master/ceph-upgrade.html
+  # 노트! 커널 버전 4.17 미만에서는 cephfs 할당량이 지원되지 않습니다.
   CSI_FORCE_CEPHFS_KERNEL_CLIENT: "true"
 
-  # (Optional) policy for modifying a volume's ownership or permissions when the RBD PVC is being mounted.
-  # supported values are documented at https://kubernetes-csi.github.io/docs/support-fsgroup.html
+  # (선택 사항) RBD PVC가 마운트 될 때 볼륨의 소유권 또는 권한을 수정하기위한 정책.
+  # 지원되는 값은 https://kubernetes-csi.github.io/docs/support-fsgroup.html에 문서화되어 있습니다.
   CSI_RBD_FSGROUPPOLICY: "ReadWriteOnceWithFSType"
 
-  # (Optional) policy for modifying a volume's ownership or permissions when the CephFS PVC is being mounted.
-  # supported values are documented at https://kubernetes-csi.github.io/docs/support-fsgroup.html
+  # (선택 사항) CephFS PVC가 마운트 될 때 볼륨의 소유권 또는 권한을 수정하기위한 정책.
+  # 지원되는 값은 https://kubernetes-csi.github.io/docs/support-fsgroup.html에 문서화되어 있습니다.
   CSI_CEPHFS_FSGROUPPOLICY: "ReadWriteOnceWithFSType"
 
-  # (Optional) Allow starting unsupported ceph-csi image
+  # (선택 사항) 지원되지 않는 ceph-csi 이미지 시작 허용
   ROOK_CSI_ALLOW_UNSUPPORTED_VERSION: "false"
-  # The default version of CSI supported by Rook will be started. To change the version
-  # of the CSI driver to something other than what is officially supported, change
-  # these images to the desired release of the CSI driver.
-  # ROOK_CSI_CEPH_IMAGE: "quay.io/cephcsi/cephcsi:v3.2.0"
-  # ROOK_CSI_REGISTRAR_IMAGE: "k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.0.1"
-  # ROOK_CSI_RESIZER_IMAGE: "k8s.gcr.io/sig-storage/csi-resizer:v1.0.0"
-  # ROOK_CSI_PROVISIONER_IMAGE: "k8s.gcr.io/sig-storage/csi-provisioner:v2.0.0"
-  # ROOK_CSI_SNAPSHOTTER_IMAGE: "k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.0"
-  # ROOK_CSI_ATTACHER_IMAGE: "k8s.gcr.io/sig-storage/csi-attacher:v3.0.0"
+  # Rook에서 지원하는 CSI의 기본 버전이 시작됩니다. 버전을 변경하려면
+   공식적으로 지원되는 것과 다른 것으로 CSI 드라이버의 수를 변경하십시오.
+  # 이러한 이미지를 원하는 CSI 드라이버 릴리스에 추가합니다.
+  # ROOK_CSI_CEPH_IMAGE : "quay.io/cephcsi/cephcsi:v3.2.0"
+  # ROOK_CSI_REGISTRAR_IMAGE : "k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.0.1"
+  # ROOK_CSI_RESIZER_IMAGE : "k8s.gcr.io/sig-storage/csi-resizer:v1.0.0"   
+  # ROOK_CSI_PROVISIONER_IMAGE : "k8s.gcr.io/sig-storage/csi-provisioner:v2.0.0"
+  # ROOK_CSI_SNAPSHOTTER_IMAGE : "k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.0"
+  # ROOK_CSI_ATTACHER_IMAGE : "k8s.gcr.io/sig-storage/csi-attacher:v3.0.0"
 
-  # (Optional) set user created priorityclassName for csi plugin pods.
+  # (선택 사항) csi 플러그인 포드에 대해 사용자가 만든 priorityclassName을 설정합니다.
   # CSI_PLUGIN_PRIORITY_CLASSNAME: "system-node-critical"
 
-  # (Optional) set user created priorityclassName for csi provisioner pods.
+  # (선택 사항) csi provisioner pod에 대해 사용자가 생성 한 priorityclassName을 설정합니다.
   # CSI_PROVISIONER_PRIORITY_CLASSNAME: "system-cluster-critical"
 
-  # CSI CephFS plugin daemonset update strategy, supported values are OnDelete and RollingUpdate.
-  # Default value is RollingUpdate.
+  # CSI CephFS 플러그인 데몬 셋 업데이트 전략, 지원되는 값은 OnDelete 및 RollingUpdate입니다.
+  # 기본값은 RollingUpdate입니다.
   # CSI_CEPHFS_PLUGIN_UPDATE_STRATEGY: "OnDelete"
-  # CSI RBD plugin daemonset update strategy, supported values are OnDelete and RollingUpdate.
-  # Default value is RollingUpdate.
+  # CSI RBD 플러그인 데몬 셋 업데이트 전략, 지원되는 값은 OnDelete 및 RollingUpdate입니다.
+  # 기본값은 RollingUpdate입니다.
   # CSI_RBD_PLUGIN_UPDATE_STRATEGY: "OnDelete"
 
-  # kubelet directory path, if kubelet configured to use other than /var/lib/kubelet path.
+  # kubelet이 / var / lib / kubelet 경로 이외의 경로를 사용하도록 구성된 경우 kubelet 디렉토리 경로입니다.
   # ROOK_CSI_KUBELET_DIR_PATH: "/var/lib/kubelet"
 
-  # Labels to add to the CSI CephFS Deployments and DaemonSets Pods.
+  # CSI CephFS 배포 및 DaemonSets 포드에 추가 할 레이블.
   # ROOK_CSI_CEPHFS_POD_LABELS: "key1=value1,key2=value2"
-  # Labels to add to the CSI RBD Deployments and DaemonSets Pods.
+  # CSI RBD 배포 및 DaemonSets 포드에 추가 할 레이블.
   # ROOK_CSI_RBD_POD_LABELS: "key1=value1,key2=value2"
 
   # (Optional) Ceph Provisioner NodeAffinity.
   # CSI_PROVISIONER_NODE_AFFINITY: "role=storage-node; storage=rook, ceph"
-  # (Optional) CEPH CSI provisioner tolerations list. Put here list of taints you want to tolerate in YAML format.
-  # CSI provisioner would be best to start on the same nodes as other ceph daemons.
+  # (선택 사항) CEPH CSI 제공자 허용 목록. YAML 형식으로 허용 할 오염 목록을 여기에 입력하세요.
+  # CSI provisioner는 다른 ceph 데몬과 동일한 노드에서 시작하는 것이 가장 좋습니다.
   # CSI_PROVISIONER_TOLERATIONS: |
   #   - effect: NoSchedule
   #     key: node-role.kubernetes.io/controlplane
@@ -105,8 +105,8 @@ data:
   #     operator: Exists
   # (Optional) Ceph CSI plugin NodeAffinity.
   # CSI_PLUGIN_NODE_AFFINITY: "role=storage-node; storage=rook, ceph"
-  # (Optional) CEPH CSI plugin tolerations list. Put here list of taints you want to tolerate in YAML format.
-  # CSI plugins need to be started on all the nodes where the clients need to mount the storage.
+  (선택 사항) CEPH CSI 플러그인 허용 목록. YAML 형식으로 허용 할 오염 목록을 여기에 입력하세요.
+  # 클라이언트가 스토리지를 마운트해야하는 모든 노드에서 CSI 플러그인을 시작해야합니다.
   # CSI_PLUGIN_TOLERATIONS: |
   #   - effect: NoSchedule
   #     key: node-role.kubernetes.io/controlplane
@@ -115,8 +115,8 @@ data:
   #     key: node-role.kubernetes.io/etcd
   #     operator: Exists
 
-  # (Optional) CEPH CSI RBD provisioner resource requirement list, Put here list of resource
-  # requests and limits you want to apply for provisioner pod
+  # (선택 사항) CEPH CSI RBD 제공자 리소스 요구 사항 목록, 여기에 리소스 목록 입력
+  # Provisioner Pod에 적용할 요청 및 제한 수
   # CSI_RBD_PROVISIONER_RESOURCE: |
   #  - name : csi-provisioner
   #    resource:
@@ -166,8 +166,8 @@ data:
   #      limits:
   #        memory: 256Mi
   #        cpu: 100m
-  # (Optional) CEPH CSI RBD plugin resource requirement list, Put here list of resource
-  # requests and limits you want to apply for plugin pod
+  # (선택 사항) CEPH CSI RBD 플러그인 리소스 요구 사항 목록, 여기에 리소스 목록 입력
+  # 플러그인 포드에 적용하려는 요청 및 제한
   # CSI_RBD_PLUGIN_RESOURCE: |
   #  - name : driver-registrar
   #    resource:
@@ -193,8 +193,8 @@ data:
   #      limits:
   #        memory: 256Mi
   #        cpu: 100m
-  # (Optional) CEPH CSI CephFS provisioner resource requirement list, Put here list of resource
-  # requests and limits you want to apply for provisioner pod
+  # (선택 사항) CEPH CSI CephFS 프로비저닝 도구 리소스 요구 사항 목록, 여기에 리소스 목록 입력
+  # 프로비저너 포드에 적용 할 요청 및 제한
   # CSI_CEPHFS_PROVISIONER_RESOURCE: |
   #  - name : csi-provisioner
   #    resource:
@@ -236,8 +236,8 @@ data:
   #      limits:
   #        memory: 256Mi
   #        cpu: 100m
-  # (Optional) CEPH CSI CephFS plugin resource requirement list, Put here list of resource
-  # requests and limits you want to apply for plugin pod
+  # (선택 사항) CEPH CSI CephFS 플러그인 리소스 요구 사항 목록, 여기에 리소스 목록 입력
+  # 플러그인 포드에 적용하려는 요청 및 제한
   # CSI_CEPHFS_PLUGIN_RESOURCE: |
   #  - name : driver-registrar
   #    resource:
@@ -264,18 +264,18 @@ data:
   #        memory: 256Mi
   #        cpu: 100m
 
-  # Configure CSI CSI Ceph FS grpc and liveness metrics port
+  # CSI CSI Ceph FS grpc 및 활성 메트릭 포트 구성
   # CSI_CEPHFS_GRPC_METRICS_PORT: "9091"
   # CSI_CEPHFS_LIVENESS_METRICS_PORT: "9081"
-  # Configure CSI RBD grpc and liveness metrics port
+  # CSI RBD grpc 및 활성 메트릭 포트 구성
   # CSI_RBD_GRPC_METRICS_PORT: "9090"
   # CSI_RBD_LIVENESS_METRICS_PORT: "9080"
 
-  # Whether the OBC provisioner should watch on the operator namespace or not, if not the namespace of the cluster will be used
+  # OBC 프로 비저 너가 운영자 네임 스페이스를 감시해야하는지 여부, 그렇지 않은 경우 클러스터의 네임 스페이스가 사용됩니다.
   ROOK_OBC_WATCH_OPERATOR_NAMESPACE: "true"
 
-  # Whether to enable the flex driver. By default it is enabled and is fully supported, but will be deprecated in some future release
-  # in favor of the CSI driver.
+  # 플렉스 드라이버 활성화 여부입니다. 기본적으로 활성화되어 있으며 완전히 지원되지만 일부 향후 릴리스에서는 더 이상 사용되지 않습니다.
+  # CSI 드라이버를 선호합니다.
   ROOK_ENABLE_FLEX_DRIVER: "false"
   # Whether to start the discovery daemon to watch for raw storage devices on nodes in the cluster.
   # This daemon does not need to run if you are only going to create your OSDs based on StorageClassDeviceSets with PVCs.
